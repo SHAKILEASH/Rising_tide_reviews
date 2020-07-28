@@ -13,22 +13,28 @@ class Signin extends Component {
         this.state = {
             email:"",
             password:"",
-            isCorrect: false
+            isEmail: false,
+            isPassword:false
         }
     }
     updateInputval = (val,prop)=>{
         const state = this.state;
         state[prop] = val;
         
-        state['isCorrect'] = false;
+        state['isEmail'] = false;
+        state['isPassword'] =false;
         this.setState(state);
     }
     loginUser = ()=>{
-        if(this.state.email === '' || this.state.password === '') {
-         correct = this.state;
-        correct['isCorrect'] = true;
-        
-        this.setState(correct);
+        if(this.state.email === '' ||!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.Mail))){
+            correct = this.state;
+            correct['isEmail'] = true;
+            this.setState(correct);
+           }
+        if(this.state.password === '') {
+            correct = this.state;
+            correct['isPassword'] = true;
+            this.setState(correct);
         }
     }
     
@@ -43,13 +49,13 @@ class Signin extends Component {
             <Text style = {{textAlign:"left",fontSize:13,paddingBottom:25,color:"grey"}}> Signup to Enjoy our service!</Text>
 
             <View style = {{ alignItems: 'center', }}>
-                <View style={this.state['isCorrect']?styles.inputWrong:styles.inputView} >
+                <View style={this.state['isEmail']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Email"
-                    value={this.state['isCorrect']?ToastAndroid.show("Enter the Mail Id",ToastAndroid.SHORT):this.state.email} onChangeText={(val) => this.updateInputval(val, 'email')} />
+                    value={this.state['isEmail']?ToastAndroid.show("Enter a valid Mail Id",ToastAndroid.SHORT):this.state.email} onChangeText={(val) => this.updateInputval(val, 'email')} />
                 </View> 
-                <View style={this.state['isCorrect']?styles.inputWrong:styles.inputView} >
+                <View style={this.state['isPassword']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Password"
-                    value={this.state['isCorrect']?ToastAndroid.show("Enter the Password",ToastAndroid.SHORT):this.state.password}
+                    value={this.state['isPassword']?ToastAndroid.show("Enter the correct Password",ToastAndroid.SHORT):this.state.password}
                     onChangeText={(val) => this.updateInputval(val, 'password')}
                     maxLength={15}
                     secureTextEntry={true} />  

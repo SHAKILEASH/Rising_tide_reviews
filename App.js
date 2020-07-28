@@ -10,6 +10,35 @@ import Create_review from './components/create_review'
 
 const Stack = createStackNavigator();
 
+/*
+class ActionBarImage extends Component {
+
+  render() {
+
+    return (
+
+      <View style={{flexDirection: 'row'}}>
+
+        <Image
+          source={require('./assets/logo_login.png')}
+          style={{ width: 40, height: 40, borderRadius: 40/2, marginLeft: 15}}
+        />
+
+      </View>
+    
+    );
+  
+  
+  }
+}*/
+function ReviewRequestIcon() {
+  return (
+    <Image
+    source={require('./assets/icons/ICONS/1.png')}
+    style={{ width: 50, height: 50, borderRadius: 40/2, marginRight : 10 }} />
+  );
+}
+
 class MyStack extends Component {
     render(){
         return(
@@ -18,7 +47,7 @@ class MyStack extends Component {
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
-                    backgroundColor: '#7AD7F0',
+                    backgroundColor: '#1792D5',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -38,7 +67,10 @@ class MyStack extends Component {
                 component={Create_review} 
                 options={
                     {title: 'REVIEW REQUESTS'},
-                    {headerLeft: null} 
+                    {headerStyle: {
+            backgroundColor: '#f4511e',
+          }},
+                    {headerRight: props => <ReviewRequestIcon {...props} /> } 
                 }
             />
          

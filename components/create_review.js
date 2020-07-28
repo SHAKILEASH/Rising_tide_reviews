@@ -2,10 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React,{Component} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid,Header} from 'react-native';
+import { Appbar } from 'react-native-paper';
 
 
 
+// npm i react-native-paper
 
 class Create_review extends Component {
     constructor(){
@@ -23,11 +25,13 @@ class Create_review extends Component {
         const state = this.state;
         state[prop] = val;
         
-        state['is'+prop] = false;
+        state['isName'] = false;
+        state['isPhone'] = false;
+        state['isMail'] = false;
         this.setState(state);
     }
     validate_form = ()=>{
-        if(this.state.Mail === '') {
+        if(this.state.Mail === '' || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.Mail))) {
             correct = this.state;
             correct['isMail'] = true;
             this.setState(correct);
@@ -39,7 +43,7 @@ class Create_review extends Component {
             this.setState(correct);
         }
         
-        if(this.state.Phone === '' || isNaN(this.state.Phone)) {
+        if(this.state.Phone === '' || isNaN(this.state.Phone) || this.state.Phone.length!=10 ) {
          correct = this.state;
         correct['isPhone'] = true;
         this.setState(correct);
@@ -48,13 +52,9 @@ class Create_review extends Component {
     
     render(){
          return (
-         <View style = {styles.container}>
-            <View style = {{ alignItems: 'center', }}>
-               <Image source={require('./assets/logo_login.png')} style = {styles.logo} />
-             </View>
-            
-
-            <View style = {{ alignItems: 'center', }}>
+         <View style = {styles.container}> 
+            <Text style = {{marginLeft:0,backgroundColor:"#d9d9d9",height:"10%",textAlign: 'center',fontWeight: 'bold',fontSize: 18,padding:20}}>CREATE REVIEW REQUEST</Text>
+            <View style = {{ alignItems: 'center',marginTop:"40%",padding:20 }}>
                 <View style={this.state['isName']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Enter Patient Name"
                     value={this.state['isName']?ToastAndroid.show("please, Enter Patient Name",ToastAndroid.SHORT):this.state.name} onChangeText={(val) => this.updateInputval(val, 'Name')} />
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
       flex: 1,
       display: "flex",
       flexDirection: "column", 
-      justifyContent: "center",
-      padding: 20,
+      justifyContent: "flex-start",
+      padding: 0,
       backgroundColor: '#fff'
     },
     inputStyle: {
