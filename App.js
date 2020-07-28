@@ -14,7 +14,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="Sign In"
+                initialRouteName="Create_review"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {

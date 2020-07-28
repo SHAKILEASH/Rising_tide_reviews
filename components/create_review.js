@@ -11,24 +11,37 @@ class Create_review extends Component {
     constructor(){
         super();
         this.state = {
-            email:"",
-            name:"",
-            phone:"",
-            isCorrect: false
+            Mail:"",
+            Name:"",
+            Phone:"",
+            isName: false,
+            isPhone: false,
+            isMail: false
         }
     }
     updateInputval = (val,prop)=>{
         const state = this.state;
         state[prop] = val;
         
-        state['isCorrect'] = false;
+        state['is'+prop] = false;
         this.setState(state);
     }
-    loginUser = ()=>{
-        if(this.state.email === '' || this.state.name === ''|| this.state.phone === '') {
-         correct = this.state;
-        correct['isCorrect'] = true;
+    validate_form = ()=>{
+        if(this.state.Mail === '') {
+            correct = this.state;
+            correct['isMail'] = true;
+            this.setState(correct);
+            }
+
+        if(this.state.Name === ''){
+            correct = this.state;
+            correct['isName'] = true;    
+            this.setState(correct);
+        }
         
+        if(this.state.Phone === '' || isNaN(this.state.Phone)) {
+         correct = this.state;
+        correct['isPhone'] = true;
         this.setState(correct);
         }
     }
@@ -39,24 +52,25 @@ class Create_review extends Component {
             <View style = {{ alignItems: 'center', }}>
                <Image source={require('./assets/logo_login.png')} style = {styles.logo} />
              </View>
-            <Text style = {{textAlign:"left",color:"black",fontSize:30,fontWeight: "bold",marginBottom:30}}>Hello there!</Text>
-            <Text style = {{textAlign:"left",fontSize:20,bottom:25}}>Welcome</Text>
-            <Text style = {{textAlign:"left",fontSize:13,paddingBottom:25,color:"grey"}}> Signup to Enjoy our service!</Text>
+            
 
             <View style = {{ alignItems: 'center', }}>
-                <View style={this.state['isCorrect']?styles.inputWrong:styles.inputView} >
-                    <TextInput style={styles.inputStyle} placeholder="Email"
-                    value={this.state['isCorrect']?ToastAndroid.show("Enter the Mail Id",ToastAndroid.SHORT):this.state.email} onChangeText={(val) => this.updateInputval(val, 'email')} />
+                <View style={this.state['isName']?styles.inputWrong:styles.inputView} >
+                    <TextInput style={styles.inputStyle} placeholder="Enter Patient Name"
+                    value={this.state['isName']?ToastAndroid.show("please, Enter Patient Name",ToastAndroid.SHORT):this.state.name} onChangeText={(val) => this.updateInputval(val, 'Name')} />
                 </View> 
-                <View style={this.state['isCorrect']?styles.inputWrong:styles.inputView} >
-                    <TextInput style={styles.inputStyle} placeholder="Password"
-                    value={this.state['isCorrect']?ToastAndroid.show("Enter the Password",ToastAndroid.SHORT):this.state.password}
-                    onChangeText={(val) => this.updateInputval(val, 'password')}
-                    maxLength={15}
-                    secureTextEntry={true} />  
-                </View>  
-                <TouchableOpacity style={styles.signupBtn} onPress = {() => this.loginUser()} >
-                    <Text style={styles.loginText}>Sign In</Text>
+
+                <View style={this.state['isMail']?styles.inputWrong:styles.inputView} >
+                    <TextInput style={styles.inputStyle} placeholder="Enter Patient Email Address"
+                    value={this.state['isMail']?ToastAndroid.show("Please,Enter a valid Email Address",ToastAndroid.SHORT):this.state.email} onChangeText={(val) => this.updateInputval(val, 'Mail')} />
+                </View> 
+                <View style={this.state['isPhone']?styles.inputWrong:styles.inputView} >
+                    <TextInput style={styles.inputStyle} placeholder="Enter Patient Phone"
+                    value={this.state['isPhone']?ToastAndroid.show("Please,Enter a valid phone number",ToastAndroid.SHORT):this.state.phone} onChangeText={(val) => this.updateInputval(val, 'Phone')} />
+                </View> 
+                
+                <TouchableOpacity style={styles.signupBtn} onPress = {() => this.validate_form()} >
+                    <Text style={styles.loginText}>CREATE REVIEW REQUEST</Text>
                 </TouchableOpacity>
               
             </ View>
@@ -81,9 +95,11 @@ const styles = StyleSheet.create({
       color:"black"
     },
     loginText: {
-      color: '#3740FE',
+      color: 'white',
       marginTop: 25,
-      textAlign: 'center'
+      textAlign: 'center',
+      fontWeight:"bold"
+
     },
     preloader: {
       left: 0,
@@ -128,9 +144,9 @@ const styles = StyleSheet.create({
     },
     signupBtn:{
       width:"90%",
-      backgroundColor:"#1792D5",
+      backgroundColor:"#39b54a",
       //backgroundColor:"#1792D5",
-      borderRadius:10,
+      //borderRadius:10,
       height:50,
       alignItems:"center",
       justifyContent:"center",
