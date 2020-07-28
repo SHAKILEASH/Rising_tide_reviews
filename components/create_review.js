@@ -7,12 +7,13 @@ import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Aler
 
 
 
-class Signin extends Component {
+class Create_review extends Component {
     constructor(){
         super();
         this.state = {
             email:"",
-            password:"",
+            name:"",
+            phone:"",
             isCorrect: false
         }
     }
@@ -24,7 +25,7 @@ class Signin extends Component {
         this.setState(state);
     }
     loginUser = ()=>{
-        if(this.state.email === '' || this.state.password === '') {
+        if(this.state.email === '' || this.state.name === ''|| this.state.phone === '') {
          correct = this.state;
         correct['isCorrect'] = true;
         
@@ -158,4 +159,4 @@ const styles = StyleSheet.create({
     }    
   });
 
-  export default Signin;
+  export default Create_review;

@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato} from 'react-native';
 import Signin from './components/signin';
+import Create_review from './components/create_review'
+
 
 
 const Stack = createStackNavigator();
@@ -27,7 +29,15 @@ class MyStack extends Component {
                 name="Sign In" 
                 component={Signin} 
                 options={
-                    {title: 'Signin'},
+                    {title: 'SIGN IN'},
+                    {headerLeft: null} 
+                }
+            />
+            <Stack.Screen 
+                name="Create_review" 
+                component={Create_review} 
+                options={
+                    {title: 'REVIEW REQUESTS'},
                     {headerLeft: null} 
                 }
             />
@@ -36,58 +46,6 @@ class MyStack extends Component {
         )
     }
 }
-
-
-/*class Login extends Component {
-    constructor(){
-        super();
-        this.state = {
-            email:"",
-            password:"",
-            isLoading: false
-        }
-    }
-    updateInputval = (val,prop)=>{
-        const state = this.state;
-        state[prop] = val;
-        this.setState(state);
-    }
-    loginUser = ()=>{
-        if(this.state.email === '' && this.state.password === '') {
-         Alert.alert('Enter details to Sign In!') }
-    }
-    
-    render(){
-         return (
-         <View style = {styles.container}>
-            <View style = {{ alignItems: 'center', }}>
-               <Image source={require('./assets/logo_login.png')} style = {styles.logo} />
-             </View>
-            <Text style = {{textAlign:"left",color:"black",fontSize:30,fontWeight: "bold",marginBottom:30}}>Hello there!</Text>
-            <Text style = {{textAlign:"left",fontSize:20,bottom:25}}>Welcome</Text>
-            <Text style = {{textAlign:"left",fontSize:13,bottom:25,color:"grey"}}> Signup to Enjoy our service!</Text>
-
-            <View style = {{ alignItems: 'center', }}>
-                <View style={styles.inputView} >
-                    <TextInput style={styles.inputStyle} placeholder="Email"
-                    value={this.state.email} onChangeText={(val) => this.updateInputval(val, 'email')} />
-                </View> 
-                <View style={styles.inputView} >
-                    <TextInput style={styles.inputStyle} placeholder="Password"
-                    value={this.state.password}
-                    onChangeText={(val) => this.updateInputval(val, 'password')}
-                    maxLength={15}
-                    secureTextEntry={true} />  
-                </View>  
-                <TouchableOpacity style={styles.signupBtn} onPress = {() => this.loginUser()} >
-                    <Text style={styles.loginText}>Sign In</Text>
-                </TouchableOpacity>
-              
-            </ View>
-        </ View>    
-      )
-    }
-}*/
                     
  function App() {
   return (
