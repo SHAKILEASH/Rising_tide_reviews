@@ -6,7 +6,7 @@ import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Aler
 import Signin from './components/signin';
 import Create_review from './components/create_review';
 import QR_CODE from './components/QR_CODE';
-
+import Review_platform from './components/Add_edit_platform';
 
 const Stack = createStackNavigator();
 
@@ -38,12 +38,19 @@ function ReviewRequestIcon() {
     style={{ width: 50, height: 50, borderRadius: 40/2, marginRight : 10 }} />
   );
 }
+function ReviewPlatformIcon() {
+  return (
+    <Image
+    source={require('./assets/icons/ICONS/2.png')}
+    style={{ width: 50, height: 50, borderRadius: 40/2, marginRight : 10 }} />
+  );
+}
 
 class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="Sign In"
+                initialRouteName="REVIEW PLATFORMS"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
@@ -76,12 +83,23 @@ class MyStack extends Component {
                 options={
                     {title: 'REVIEW REQUESTS'},
                     {headerStyle: {
-            backgroundColor: '#f4511e',
-          }},
+                    backgroundColor: '#f4511e',
+                    }},
                     {headerRight: props => <ReviewRequestIcon {...props} /> } 
                 }
             />
-         
+            <Stack.Screen 
+                name="REVIEW PLATFORMS" 
+                component={Review_platform} 
+                options={
+                    {title: 'REVIEW PLATFORMS'},
+                    {headerStyle: {
+                    backgroundColor: '#f4511e',
+                    }},
+                    {headerRight: props => <ReviewPlatformIcon {...props} /> } 
+                }
+            />
+
             </Stack.Navigator>    
         )
     }
