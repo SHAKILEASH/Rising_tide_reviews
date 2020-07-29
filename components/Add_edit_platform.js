@@ -9,14 +9,15 @@ class Review_platform extends Component {
     constructor(){
         super();
         this.state = {
-            Mail:"",
-            Name:"",
-            Phone:"",
-            checked:false,
-            isName: false,
-            isPhone: false,
-            isMail: false
-            
+          isAddGoogle:false,
+            isAddFb:false,
+            isAddBui:false,
+            isEditGoogle:false,
+            isEditFb: false,
+            isEditBui: false,
+            isInactiveGoogle:false,
+            isInactiveFb: false,
+            isInactiveBui: false
         }
     }
     updateInputval = (val,prop)=>{
@@ -27,17 +28,54 @@ class Review_platform extends Component {
         state['isPhone'] = false;
         state['isMail'] = false;
         this.setState(state);
+         
     }
+    addPlatform = (prop)=>{
+      var state = this.state;
+      state[prop] = true;
+      this.setState(state);
+    } 
+    editPlatform = (prop)=>{
+      var state = this.state;
+      state[prop] = true;
+      this.setState(state);
+    }
+    inactivatePlatform = (prop1,prop2)=>{
+      var state = this.state;
+      state[prop1] = false;
+      state[prop2] = false;
+      this.setState(state);
+    }     
     render(){
          return (
          <View style = {styles.container}> 
-            <Text style = {{marginLeft:0,backgroundColor:"#d9d9d9",height:"10%",textAlign: 'center',fontWeight: 'bold',fontSize: 18,padding:20}}>ADD/EDIT REVIEW PLATFORMS</Text>
-            <View style = {{flexDirection:"row",padding:"20%"}}>
+           <View style={{position: 'absolute',backgroundColor:"#d9d9d9",width:"100%",height:"13%",alignItems:'center', justifyContent:"center" ,paddingLeft:"10%"}}>
+              <Text style = {{textAlign: 'center',fontWeight: 'bold',fontSize: 18,padding:20}}>ADD/EDIT REVIEW PLATFORMS</Text>
+           </View>
+            
+          <View style = {{flexDirection:"row",paddingTop:"30%"}}>
+            <View style = {{flexDirection:'column',padding:"10%",justifyContent:'center',alignItems:'center'}}>
              <Image source={require('./assets/icons/ICONS/11.png')}
-                style={{ width: 100, height: 100 ,marginRight:"10%" }} />
-             <Image source={require('./assets/icons/ICONS/12.png')}
-    style={{  width: 100, height: 100,marginLeft:"10%" }} />
-            </View> 
+                style={{ width: 100, height: 100 }} />  
+              {this.state.isAddGoogle?<TouchableOpacity onPress = {() => this.editPlatform("isEditGoogle")}><Text style = {{fontWeight:'bold'}}>[EDIT]</Text></TouchableOpacity>:<TouchableOpacity onPress = {() => this.addPlatform("isAddGoogle")}><Text style = {{fontWeight:'bold'}}>[ADD]</Text></TouchableOpacity>}
+              {this.state.isAddGoogle?<TouchableOpacity onPress = {() => this.inactivatePlatform("isInactiveGoogle","isAddGoogle")}><Text style = {{fontWeight:'bold'}}>[INACTIVE]</Text></TouchableOpacity>:<Text style = {{fontWeight:'bold'}}></Text>}
+            </View>
+           <View style = {{flexDirection:'column',padding:"10%",justifyContent:'center',alignItems:'center'}}>
+             <Image source={require('./assets/icons/ICONS/12.png')}        
+             style={{  width: 100, height: 100 }} />
+             {this.state.isAddFb?<TouchableOpacity onPress = {() => this.editPlatform("isEditFb")}><Text style = {{fontWeight:'bold'}}>[EDIT]</Text></TouchableOpacity>:<TouchableOpacity onPress = {() => this.addPlatform("isAddFb")}><Text style = {{fontWeight:'bold'}}>[ADD]</Text></TouchableOpacity>}
+              {this.state.isAddFb?<TouchableOpacity onPress = {() => this.inactivatePlatform("isInactiveFb","isAddFb")}><Text style = {{fontWeight:'bold'}}>[INACTIVE]</Text></TouchableOpacity>:<Text style = {{fontWeight:'bold'}}></Text>}
+           </View>
+          </View> 
+          <View style = {{flexDirection:"row",paddingTop:"10%"}}>
+            <View style = {{flexDirection:'column',padding:"10%",justifyContent:'center',alignItems:'center'}}>
+             <Image source={require('./assets/icons/ICONS/13.png')}
+                style={{ width: 100, height: 100 }} />
+              {this.state.isAddBui?<TouchableOpacity onPress = {() => this.editPlatform("isEditBui")}><Text style = {{fontWeight:'bold'}}>[EDIT]</Text></TouchableOpacity>:<TouchableOpacity onPress = {() => this.addPlatform("isAddBui")}><Text style = {{fontWeight:'bold'}}>[ADD]</Text></TouchableOpacity>}
+              {this.state.isAddBui?<TouchableOpacity onPress = {() => this.inactivatePlatform("isInactiveBui","isAddBui")}><Text style = {{fontWeight:'bold'}}>[INACTIVE]</Text></TouchableOpacity>:<Text style = {{fontWeight:'bold'}}></Text>}
+            </View>
+          </View>
+            
             <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View> 
         </ View>    
       )

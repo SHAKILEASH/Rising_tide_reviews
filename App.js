@@ -50,7 +50,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="REVIEW PLATFORMS"
+                initialRouteName="Create_review"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {

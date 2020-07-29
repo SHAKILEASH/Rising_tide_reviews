@@ -60,6 +60,7 @@ class Create_review extends Component {
     render(){
          return (
          <View style = {styles.container}> 
+            
             <Text style = {{marginLeft:0,backgroundColor:"#d9d9d9",height:"10%",textAlign: 'center',fontWeight: 'bold',fontSize: 18,padding:20}}>CREATE REVIEW REQUEST</Text>
             <View style = {{ alignItems: 'center',marginTop:"30%",padding:20 }}>
                 <View style={this.state['isName']?styles.inputWrong:styles.inputView} >
@@ -181,7 +182,8 @@ const styles = StyleSheet.create({
     },
    loginText:{
       color:"white",
-      fontSize:20
+      fontSize:20,
+      textAlign:"center"
   
     },
     forgot:{
