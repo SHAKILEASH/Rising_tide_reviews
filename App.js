@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato} from 'react-native';
 import Signin from './components/signin';
-import Create_review from './components/create_review'
-
+import Create_review from './components/create_review';
+import QR_CODE from './components/QR_CODE';
 
 
 const Stack = createStackNavigator();
@@ -43,7 +43,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="Create_review"
+                initialRouteName="Sign In"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
@@ -59,6 +59,14 @@ class MyStack extends Component {
                 component={Signin} 
                 options={
                     {title: 'SIGN IN'},
+                    {headerLeft: null} 
+                }
+            />
+             <Stack.Screen 
+                name="QR_CODE" 
+                component={QR_CODE} 
+                options={
+                    {title: 'QR_CODE'},
                     {headerLeft: null} 
                 }
             />

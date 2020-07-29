@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React,{Component} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {TouchableOpacity, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid,Header} from 'react-native';
-import { Appbar } from 'react-native-paper';
+import {TouchableOpacity,CheckBox, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid,Header} from 'react-native';
+import QR_CODE from './QR_CODE';
 
 
 
@@ -16,9 +16,11 @@ class Create_review extends Component {
             Mail:"",
             Name:"",
             Phone:"",
+            checked:false,
             isName: false,
             isPhone: false,
             isMail: false
+            
         }
     }
     updateInputval = (val,prop)=>{
@@ -32,21 +34,26 @@ class Create_review extends Component {
     }
     validate_form = ()=>{
         if(this.state.Mail === '' || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.Mail))) {
-            correct = this.state;
+            var correct = this.state;
             correct['isMail'] = true;
             this.setState(correct);
             }
 
         if(this.state.Name === ''){
-            correct = this.state;
+            var correct = this.state;
             correct['isName'] = true;    
             this.setState(correct);
         }
         
         if(this.state.Phone === '' || isNaN(this.state.Phone) || this.state.Phone.length!=10 ) {
-         correct = this.state;
+         var correct = this.state;
         correct['isPhone'] = true;
         this.setState(correct);
+        }
+
+        if(this.state.checked === false){
+          this. props. navigation. navigate("QR_CODE")
+          //Alert.alert("rberif");
         }
     }
     
@@ -54,7 +61,7 @@ class Create_review extends Component {
          return (
          <View style = {styles.container}> 
             <Text style = {{marginLeft:0,backgroundColor:"#d9d9d9",height:"10%",textAlign: 'center',fontWeight: 'bold',fontSize: 18,padding:20}}>CREATE REVIEW REQUEST</Text>
-            <View style = {{ alignItems: 'center',marginTop:"40%",padding:20 }}>
+            <View style = {{ alignItems: 'center',marginTop:"30%",padding:20 }}>
                 <View style={this.state['isName']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Enter Patient Name"
                     value={this.state['isName']?ToastAndroid.show("please, Enter Patient Name",ToastAndroid.SHORT):this.state.name} onChangeText={(val) => this.updateInputval(val, 'Name')} />
@@ -68,12 +75,20 @@ class Create_review extends Component {
                     <TextInput style={styles.inputStyle} placeholder="Enter Patient Phone"
                     value={this.state['isPhone']?ToastAndroid.show("Please,Enter a valid phone number",ToastAndroid.SHORT):this.state.phone} onChangeText={(val) => this.updateInputval(val, 'Phone')} />
                 </View> 
-                
+             </View>  
+             <View style = {{flexDirection: "row",paddingLeft:"10%"}}> 
+                <CheckBox
+                  value={this.state.checked}
+                  onValueChange={() => this.setState({ checked: !this.state.checked })}
+                />
+                <Text style = {{paddingLeft:5,marginTop:"0%"}}>Send link via Email.</Text>
+              </ View>
+              <View style = {{ alignItems: 'center',padding:20}} >
                 <TouchableOpacity style={styles.signupBtn} onPress = {() => this.validate_form()} >
                     <Text style={styles.loginText}>CREATE REVIEW REQUEST</Text>
                 </TouchableOpacity>
-              
-            </ View>
+              </View>  
+              <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View> 
         </ View>    
       )
     }
@@ -120,7 +135,7 @@ const styles = StyleSheet.create({
     },
     inputWrong:{
       width:"90%",
-      backgroundColor:"orangered",
+      backgroundColor:"white",
   
       borderRadius:5,
       height:50,
@@ -128,7 +143,7 @@ const styles = StyleSheet.create({
       justifyContent:"center",
       padding:20,
       borderWidth: 1,
-      borderColor: "#000000"
+      borderColor: "orangered"
     },
     inputView:{
       width:"90%",

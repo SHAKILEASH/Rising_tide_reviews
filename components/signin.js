@@ -32,7 +32,7 @@ class Signin extends Component {
             this.setState(correct);
            }
         if(this.state.password === '') {
-            correct = this.state;
+            var correct = this.state;
             correct['isPassword'] = true;
             this.setState(correct);
         }
@@ -65,6 +65,7 @@ class Signin extends Component {
                 </TouchableOpacity>
               
             </ View>
+            <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View>
         </ View>    
       )
     }
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       padding: 20,
       backgroundColor: '#fff'
-    },
+    },  
     inputStyle: {
      height:50,
       color:"black"
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     },
     inputWrong:{
       width:"90%",
-      backgroundColor:"orangered",
+      backgroundColor:"white",
   
       borderRadius:5,
       height:50,
@@ -117,7 +118,7 @@ const styles = StyleSheet.create({
       justifyContent:"center",
       padding:20,
       borderWidth: 1,
-      borderColor: "#000000"
+      borderColor: "orangered"
     },
     inputView:{
       width:"90%",
