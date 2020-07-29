@@ -43,16 +43,22 @@ class Signin extends Component {
          <View style = {styles.container}>
             <View style = {{ alignItems: 'center', }}>
                <Image source={require('./assets/logo_login.png')} style = {styles.logo} />
-             </View>
-            <Text style = {{textAlign:"left",color:"black",fontSize:30,fontWeight: "bold",marginBottom:30}}>Hello there!</Text>
-            <Text style = {{textAlign:"left",fontSize:20,bottom:25}}>Welcome</Text>
-            <Text style = {{textAlign:"left",fontSize:13,paddingBottom:25,color:"grey"}}> Signup to Enjoy our service!</Text>
+            </View>
+
+            <View style = {{paddingLeft:10}}>
+                <Text style = {{textAlign:"left",color:"black",fontSize:30,fontWeight: "bold",marginBottom:20}}>Hello there!</Text>
+            
+                <Text style = {{textAlign:"left",fontSize:20,paddingBottom:10}}>Welcome</Text>
+            
+                <Text style = {{textAlign:"left",fontSize:13,paddingBottom:25,color:"grey"}}> Sign In to Enjoy our service!</Text>
+            </View>
 
             <View style = {{ alignItems: 'center', }}>
                 <View style={this.state['isEmail']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Email"
                     value={this.state['isEmail']?ToastAndroid.show("Enter a valid Mail Id",ToastAndroid.SHORT):this.state.email} onChangeText={(val) => this.updateInputval(val, 'email')} />
                 </View> 
+
                 <View style={this.state['isPassword']?styles.inputWrong:styles.inputView} >
                     <TextInput style={styles.inputStyle} placeholder="Password"
                     value={this.state['isPassword']?ToastAndroid.show("Enter the correct Password",ToastAndroid.SHORT):this.state.password}
@@ -60,13 +66,16 @@ class Signin extends Component {
                     maxLength={15}
                     secureTextEntry={true} />  
                 </View>  
+
                 <TouchableOpacity style={styles.signupBtn} onPress = {() => this.loginUser()} >
                     <Text style={styles.loginText}>Sign In</Text>
                 </TouchableOpacity>
               
             </ View>
+            
             <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View>
-        </ View>    
+                
+        </ View>  
       )
     }
 }
@@ -79,7 +88,7 @@ const styles = StyleSheet.create({
       display: "flex",
       flexDirection: "column", 
       justifyContent: "center",
-      padding: 20,
+      padding: 0,
       backgroundColor: '#fff'
     },  
     inputStyle: {
