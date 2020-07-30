@@ -1,9 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React,{Component} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import {TouchableOpacity,CheckBox, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid,Header} from 'react-native';
-import QR_CODE from './QR_CODE';
+
 
 
 
@@ -54,6 +51,10 @@ class Create_review extends Component {
         if(this.state.checked === false){
           this. props. navigation. navigate("QR_CODE")
           //Alert.alert("rberif");
+        }
+        else
+        {
+          this. props. navigation. navigate("REVIEW REQUESTS",{name:"hello"})
         }
     }
     

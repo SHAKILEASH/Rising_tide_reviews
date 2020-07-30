@@ -8,7 +8,7 @@ import Create_review from './components/create_review';
 import QR_CODE from './components/QR_CODE';
 import Review_platform from './components/Add_edit_platform';
 import request_status from './components/Requests_status';
-import Ani from "./components/try.js"
+import Ani from "./components/review_request.js"
 
 const Stack = createStackNavigator();
 
@@ -31,7 +31,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="Request Status"
+                initialRouteName="REVIEW REQUEST"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
@@ -59,10 +59,10 @@ class MyStack extends Component {
                 }
             />
             <Stack.Screen 
-                name="Create_review" 
+                name="REVIEW REQUEST" 
                 component={Create_review} 
                 options={
-                    {title: 'REVIEW REQUESTS'},
+                    {title: 'REVIEW REQUEST'},
                     {headerStyle: {
                     backgroundColor: '#f4511e',
                     }},
@@ -81,7 +81,7 @@ class MyStack extends Component {
                 }
             />
             <Stack.Screen 
-                name="Request Status" 
+                name="REVIEW REQUESTS" 
                 component={Ani} 
                 options={
                     {title: 'REVIEW REQUESTS'},

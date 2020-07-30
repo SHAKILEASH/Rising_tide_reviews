@@ -103,14 +103,16 @@ class Animated_Item extends Component {
   }
 }
 
-class Ani extends Component {
+class Ani extends Component { 
 
-  constructor() {
+  constructor(props) {
 
-    super();
-    this.state = { valueArray: [], disabled: false }
+    super(props);
+    this.state = { valueArray: [], disabled: false,data:'' }
     this.addNewElement = false;
     this.index = 0;
+    //const text = this.props.navigation.getParams('name');
+    
   }
 
   afterAnimationComplete = () => {
@@ -120,11 +122,13 @@ class Ani extends Component {
 
   add_New_View = () => {
     this.addNewElement = true;
-    const newlyAddedValue = { id: "id_" + this.index, text: this.index + 1,name:"teriboi",email:"teriboi@gmail.com",phone:9787076757 };
+    var text = this.props.navigation.getParams('name','teri')
+    const newlyAddedValue = { id: "id_" + this.index, text: this.index + 1,name:text,email:"teriboi@gmail.com",phone:9787076757 };
 
     this.setState({
       disabled: true,
-      valueArray: [...this.state.valueArray, newlyAddedValue]
+      valueArray: [...this.state.valueArray, newlyAddedValue],
+      data:text
     });
   }
 
@@ -145,10 +149,15 @@ class Ani extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style = {{borderBottomColor: 'black', flexDirection:"row"  ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",justifyContent: "center",alignItems:"center",paddingBottom:"7%"}}  >
-                <Text style = {{marginLeft:0,backgroundColor:"#edf0f5",height:"10%",textAlign: 'center',fontWeight: 'bold',width:"100%",fontSize: 18}}>TOTAL REQUEST</Text>
-                <Text style = {{marginLeft:0,backgroundColor:"#edf0f5",height:"10%",textAlign: 'center',color:"#1792D5",fontWeight: 'bold',width:"100%",fontSize: 20}}> 7</Text>
+        <View style = {{borderBottomColor: 'black', flexDirection:"row" ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",alignItems:"center", justifyContent:"center"}}  >
+                <Text style = {{fontWeight:"bold",fontSize:20}}>TOTAL REQUEST</Text>
+                <Text style = {{color:"#1792D5",fontWeight:"bold",fontSize:20}}> 7</Text>
+            </View>
+            <View style = {{borderBottomColor: 'black', flexDirection:"row" ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",alignItems:"center", justifyContent:"center"}}  >
+                <Text style = {{fontWeight:"bold",fontSize:20}}>PENDING REQUEST</Text>
+                <Text style = {{color:"#1792D5",fontWeight:"bold",fontSize:20}}> 4</Text>
             </View>  
+        
         <ScrollView
           ref={scrollView => this.scrollView = scrollView}
           onContentSizeChange={() => {
@@ -174,14 +183,11 @@ class Ani extends Component {
 
         <TouchableOpacity
           activeOpacity={0.8}
-          style={styles.TouchableOpacityStyle}
+          
           disabled={this.state.disabled}
           onPress={this.add_New_View}>
-
-          <Image
-            source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2017/11/Floating_Button.png' }}
-            style={styles.FloatingButtonStyle}
-          />
+         <Text style={{fontWeight:"bold",color:"white",backgroundColor:"#39b54a",width:"100%",paddingVertical:"5%",paddingBottom:"10%",textAlign:"center",fontSize:20}}>{navigation.getParam('name')}</Text>
+         <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View>
 
         </TouchableOpacity>
 
