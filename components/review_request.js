@@ -10,8 +10,10 @@ import {
   Text,
   TouchableOpacity,
   UIManager,
-  View
+  View,
+  Alert    
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const width = Dimensions.get('window').width;
 
@@ -111,10 +113,51 @@ class Ani extends Component {
     this.state = { valueArray: [], disabled: false,data:'' }
     this.addNewElement = false;
     this.index = 0;
+    
+    this.addNewElement = true;
+   
+
     //const text = this.props.navigation.getParams('name');
     
   }
+  componentDidMount(){
+    if(this.props.route.params){
+         //Alert.alert("fe");
+        this.name = "undefined";
+        this.mail = "undefined";
+        this.phone = "undefined";
+        }   
+    else{
+    this.name = this.props.route.params.name || "undefined";
+    this.mail = this.props.route.params.mail || "undefined";
+    this.phone = this.props.route.params.phone || "undefined";
+    
+    }    
+    //Alert.alert(this.props.route.params);  
+    
+      //var text = this.props.navigation.getParams('name','teri');
+    //text();  
+    const newlyAddedValue = { id: "id_" + this.index,name:this.name,email:this.mail,phone:this.phone };
 
+    this.setState({
+      disabled: true,
+      valueArray: [...this.state.valueArray, newlyAddedValue]
+    });
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener("didFocus", () => {
+      Alert.alert("er");
+    });
+      
+  }
+    componentWillUnmount() {
+  // Typical usage (don't forget to compare props):
+    this.focusListener.remove();
+  }
+    update(){
+        Alert.alert("back_HOME");
+    }
+    
+    
   afterAnimationComplete = () => {
     this.index += 1;
     this.setState({ disabled: false });
@@ -122,13 +165,27 @@ class Ani extends Component {
 
   add_New_View = () => {
     this.addNewElement = true;
-    var text = this.props.navigation.getParams('name','teri')
-    const newlyAddedValue = { id: "id_" + this.index, text: this.index + 1,name:text,email:"teriboi@gmail.com",phone:9787076757 };
+       if(this.props.route.params){
+         Alert.alert("deu");
+        this.name = "undefined";
+    this.mail = "undefined";
+    this.phone = "undefined";
+    }   
+    else{
+    this.name = this.props.route.params.name || "undefined";
+    this.mail = this.props.route.params.mail || "undefined";
+    this.phone = this.props.route.params.phone || "undefined";
+    
+    }    
+    //Alert.alert(this.props.route.params);  
+    
+      //var text = this.props.navigation.getParams('name','teri');
+    //text();  
+    const newlyAddedValue = { id: "id_" + this.index,name:this.name,email:this.mail,phone:this.phone };
 
     this.setState({
       disabled: true,
-      valueArray: [...this.state.valueArray, newlyAddedValue],
-      data:text
+      valueArray: [...this.state.valueArray, newlyAddedValue]
     });
   }
 
@@ -152,7 +209,7 @@ class Ani extends Component {
         <View style = {{borderBottomColor: 'black', flexDirection:"row" ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",alignItems:"center", justifyContent:"center"}}  >
                 <Text style = {{fontWeight:"bold",fontSize:20}}>TOTAL REQUEST</Text>
                 <Text style = {{color:"#1792D5",fontWeight:"bold",fontSize:20}}> 7</Text>
-            </View>
+            </View>  
             <View style = {{borderBottomColor: 'black', flexDirection:"row" ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",alignItems:"center", justifyContent:"center"}}  >
                 <Text style = {{fontWeight:"bold",fontSize:20}}>PENDING REQUEST</Text>
                 <Text style = {{color:"#1792D5",fontWeight:"bold",fontSize:20}}> 4</Text>
@@ -185,12 +242,11 @@ class Ani extends Component {
           activeOpacity={0.8}
           
           disabled={this.state.disabled}
-          onPress={this.add_New_View}>
-         <Text style={{fontWeight:"bold",color:"white",backgroundColor:"#39b54a",width:"100%",paddingVertical:"5%",paddingBottom:"10%",textAlign:"center",fontSize:20}}>{navigation.getParam('name')}</Text>
-         <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View>
+          onPress={() => { this.props.navigation. navigate("REVIEW REQUEST") }} >
+         <Text style={{fontWeight:"bold",color:"white",backgroundColor:"#39b54a",width:"100%",paddingVertical:"5%",paddingBottom:"10%",textAlign:"center",fontSize:20}}>CREATE REQUEST</Text>
 
         </TouchableOpacity>
-
+        <View style={{position: 'absolute', left: 0, right: 0, bottom: 0,backgroundColor:"#1792D5",width:"100%"}}><Text> </Text></View>
       </View>
     );
   }
@@ -256,4 +312,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default  Ani;
+export default withNavigation(Ani);

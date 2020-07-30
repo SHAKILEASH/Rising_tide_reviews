@@ -31,7 +31,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="REVIEW REQUEST"
+                initialRouteName="REVIEW REQUESTS"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
@@ -88,8 +88,10 @@ class MyStack extends Component {
                     {headerStyle: {
                     backgroundColor: '#f4511e',
                     }},
-                    {headerRight: props => <ReviewRequestIcon {...props} /> } 
+                    {headerRight: props => <ReviewRequestIcon {...props}/> 
+                    } 
                 }
+            initialParams={{test:"true"}}
             />
 
             </Stack.Navigator>    

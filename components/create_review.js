@@ -30,32 +30,37 @@ class Create_review extends Component {
         this.setState(state);
     }
     validate_form = ()=>{
+        var flag = true;
         if(this.state.Mail === '' || !(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.Mail))) {
             var correct = this.state;
             correct['isMail'] = true;
+            flag = false;
             this.setState(correct);
             }
 
         if(this.state.Name === ''){
             var correct = this.state;
-            correct['isName'] = true;    
+            correct['isName'] = true; 
+            flag = false;
             this.setState(correct);
         }
         
         if(this.state.Phone === '' || isNaN(this.state.Phone) || this.state.Phone.length!=10 ) {
          var correct = this.state;
         correct['isPhone'] = true;
+            flag = false;
         this.setState(correct);
         }
-
+      if(flag == true){
         if(this.state.checked === false){
           this. props. navigation. navigate("QR_CODE")
           //Alert.alert("rberif");
         }
         else
         {
-          this. props. navigation. navigate("REVIEW REQUESTS",{name:"hello"})
+          this.props.navigation.navigate("REVIEW REQUESTS",{name:this.state.Name,mail:this.state.Mail,phone:this.state.Phone});
         }
+      }
     }
     
     render(){
