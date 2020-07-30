@@ -7,30 +7,11 @@ import Signin from './components/signin';
 import Create_review from './components/create_review';
 import QR_CODE from './components/QR_CODE';
 import Review_platform from './components/Add_edit_platform';
+import request_status from './components/Requests_status';
+import Ani from "./components/try.js"
 
 const Stack = createStackNavigator();
 
-/*
-class ActionBarImage extends Component {
-
-  render() {
-
-    return (
-
-      <View style={{flexDirection: 'row'}}>
-
-        <Image
-          source={require('./assets/logo_login.png')}
-          style={{ width: 40, height: 40, borderRadius: 40/2, marginLeft: 15}}
-        />
-
-      </View>
-    
-    );
-  
-  
-  }
-}*/
 function ReviewRequestIcon() {
   return (
     <Image
@@ -50,7 +31,7 @@ class MyStack extends Component {
     render(){
         return(
             <Stack.Navigator
-                initialRouteName="Create_review"
+                initialRouteName="Request Status"
                 screenOptions={{
                 headerTitleAlign: 'center',
                 headerStyle: {
@@ -97,6 +78,17 @@ class MyStack extends Component {
                     backgroundColor: '#f4511e',
                     }},
                     {headerRight: props => <ReviewPlatformIcon {...props} /> } 
+                }
+            />
+            <Stack.Screen 
+                name="Request Status" 
+                component={Ani} 
+                options={
+                    {title: 'REVIEW REQUESTS'},
+                    {headerStyle: {
+                    backgroundColor: '#f4511e',
+                    }},
+                    {headerRight: props => <ReviewRequestIcon {...props} /> } 
                 }
             />
 
