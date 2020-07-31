@@ -531,7 +531,7 @@ import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   TouchableOpacity,
   StyleSheet,
@@ -583,10 +583,11 @@ class MyStack extends Component {
   render() {
     return (
       <Drawer.Navigator
+        drawerStyle={{ backgroundColor: "#1792d5" }}
         screenOptions={{
           headerTitleAlign: "center",
           headerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: "white",
           },
           headerTintColor: "#fff",
           headerTitleStyle: {
@@ -594,9 +595,123 @@ class MyStack extends Component {
           },
         }}
       >
-        <Drawer.Screen name="Change Password" component={createReview} />
-        <Drawer.Screen name="Plan Details" component={createReview} />
-        <Drawer.Screen name="Logout" component={createReview} />
+        <Drawer.Screen
+          name=" "
+          component={createReview}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <View style={styles.refreshButton}>
+                <Image
+                  source={require("./assets/icons/ICONS/6.png")}
+                  style={{
+                    width: 100,
+                    height: 100,
+                    borderRadius: 40 / 2,
+                    marginRight: -70,
+                  }}
+                />
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    alignContent: "center",
+                    textAlign: "center",
+                    paddingLeft: 70,
+                    fontSize: 20,
+                  }}
+                >
+                  {"\n"}WELCOME
+                  {"\n"}Dr. ABC
+                </Text>
+              </View>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="."
+          component={createReview}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <View
+                colors={["#17b850", "#19b749"]}
+                style={styles.refreshButton}
+              >
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  Create Password
+                </Text>
+              </View>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name=","
+          component={createReview}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <View
+                colors={["#17b850", "#19b749"]}
+                style={styles.refreshButton}
+              >
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  Plan Details
+                </Text>
+              </View>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="'"
+          component={createReview}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <View
+                colors={["#17b850", "#19b749"]}
+                style={styles.refreshButton}
+              >
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    color: "white",
+                    fontSize: 20,
+                  }}
+                >
+                  Logout
+                </Text>
+              </View>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="-"
+          component={createReview}
+          options={{
+            drawerIcon: ({ focused, size }) => (
+              <View style={styles.refreshButton}>
+                <Image
+                  source={require("./assets/icons/3.png")}
+                  style={{
+                    width: 150,
+                    height: 150,
+                    borderRadius: 40 / 2,
+                    marginRight: -70,
+                  }}
+                />
+              </View>
+            ),
+          }}
+        />
       </Drawer.Navigator>
     );
   }
@@ -688,129 +803,21 @@ const styles = StyleSheet.create({
     color: "black",
     fontSize: 12,
   },
-});
-
-export default App;
-
-
-
-##QRCODE
-
-
-import { StatusBar } from "expo-status-bar";
-import React, { Component } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import {
-  TouchableOpacity,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  TextInput,
-  Button,
-  Alert,
-  ActivityIndicato,
-  ToastAndroid,
-} from "react-native";
-import QRCode from "react-native-qrcode-svg";
-
-//npm install react-native-qrcode --save
-
-class QR_CODE extends Component {
-  constructor() {
-    super();
-    this.state = {
-      defaultValue: "NONE",
-      // Default Value of the TextInput
-      valueForQRCode: "www.google.com",
-      // Default value for the QR Code
-    };
-  }
-  getTextInputValue = () => {
-    // Function to get the value from input
-    // and Setting the value to the QRCode
-    this.setState({ valueForQRCode: this.state.inputValue });
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text
-          style={{
-            marginLeft: 0,
-            backgroundColor: "#d9d9d9",
-            height: "10%",
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: 18,
-            padding: 20,
-          }}
-        >
-          REQUEST REQUEST CODE
-        </Text>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "10%",
-          }}
-        >
-          <Text style={{ fontSize: 20, textAlign: "center" }}>
-            {" "}
-            Scan The Code To Submit Your Review
-          </Text>
-        </View>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "0%",
-          }}
-        >
-          <QRCode
-            //QR code value
-            value={
-              this.state.valueForQRCode
-                ? this.state.valueForQRCode
-                : this.state.defaultValue
-            }
-            size={250}
-            color="black"
-            backgroundColor="white"
-          />
-        </View>
-
-        <View
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "#1792D5",
-            width: "100%",
-          }}
-        >
-          <Text> </Text>
-        </View>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    fontFamily: "SourceSansPro-Bold",
-    flex: 1,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    padding: 0,
-    backgroundColor: "#fff",
+  refreshButton: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    alignItems: "center",
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    padding: 15,
+    borderRadius: 30,
   },
 });
 
-export default QR_CODE;
+export default App;
 
 
 
