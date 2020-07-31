@@ -34,11 +34,13 @@ class Review_platform extends Component {
       var state = this.state;
       state[prop] = true;
       this.setState(state);
+      this.props.navigation. navigate("Review Platforms",{"platform":prop}); 
     } 
     editPlatform = (prop)=>{
       var state = this.state;
       state[prop] = true;
       this.setState(state);
+      this.props.navigation. navigate("Review Edit Platform",{"platform":prop}); 
     }
     inactivatePlatform = (prop1,prop2)=>{
       var state = this.state;

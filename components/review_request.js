@@ -113,19 +113,21 @@ class Ani extends Component {
     this.state = { valueArray: [], disabled: false,data:'' }
     this.addNewElement = false;
     this.index = 0;
-    
+    this.call = true;
+
     this.addNewElement = true;
    
 
     //const text = this.props.navigation.getParams('name');
     
   }
+  
   componentDidMount(){
-    if(this.props.route.params){
+    /*if(this.props.route.params){
          //Alert.alert("fe");
-        this.name = "undefined";
-        this.mail = "undefined";
-        this.phone = "undefined";
+        this.name = "teri";
+        this.mail = "teri@gmail.com";
+        this.phone = "7010846219";
         }   
     else{
     this.name = this.props.route.params.name || "undefined";
@@ -136,23 +138,18 @@ class Ani extends Component {
     //Alert.alert(this.props.route.params);  
     
       //var text = this.props.navigation.getParams('name','teri');
-    //text();  
+    //text();  */
+    this.name = "teri";
+    this.mail = "teri@gmail.com";
+    this.phone = "7010846219";
     const newlyAddedValue = { id: "id_" + this.index,name:this.name,email:this.mail,phone:this.phone };
 
     this.setState({
       disabled: true,
       valueArray: [...this.state.valueArray, newlyAddedValue]
-    });
-    const { navigation } = this.props;
-    this.focusListener = navigation.addListener("didFocus", () => {
-      Alert.alert("er");
-    });
-      
+    });      
   }
-    componentWillUnmount() {
-  // Typical usage (don't forget to compare props):
-    this.focusListener.remove();
-  }
+ 
     update(){
         Alert.alert("back_HOME");
     }
@@ -166,16 +163,16 @@ class Ani extends Component {
   add_New_View = () => {
     this.addNewElement = true;
        if(this.props.route.params){
-         Alert.alert("deu");
-        this.name = "undefined";
+         Alert.alert("working",this.props.route.params.name );
+        this.name = "shaki";
     this.mail = "undefined";
     this.phone = "undefined";
+    this.call = false;
     }   
     else{
-    this.name = this.props.route.params.name || "undefined";
+    this.name = this.props.route.params.name || "Arvi";
     this.mail = this.props.route.params.mail || "undefined";
     this.phone = this.props.route.params.phone || "undefined";
-    
     }    
     //Alert.alert(this.props.route.params);  
     
@@ -205,7 +202,11 @@ class Ani extends Component {
 
   render() {
     return (
+
+     
+      
       <View style={styles.container}>
+         
         <View style = {{borderBottomColor: 'black', flexDirection:"row" ,borderBottomWidth: 1,backgroundColor:"#edf0f5",height:"7%",alignItems:"center", justifyContent:"center"}}  >
                 <Text style = {{fontWeight:"bold",fontSize:20}}>TOTAL REQUEST</Text>
                 <Text style = {{color:"#1792D5",fontWeight:"bold",fontSize:20}}> 7</Text>
@@ -242,7 +243,7 @@ class Ani extends Component {
           activeOpacity={0.8}
           
           disabled={this.state.disabled}
-          onPress={() => { this.props.navigation. navigate("REVIEW REQUEST") }} >
+          onPress={() => { this.props.navigation. navigate("reviewRequests") }} >
          <Text style={{fontWeight:"bold",color:"white",backgroundColor:"#39b54a",width:"100%",paddingVertical:"5%",paddingBottom:"10%",textAlign:"center",fontSize:20}}>CREATE REQUEST</Text>
 
         </TouchableOpacity>

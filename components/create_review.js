@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {TouchableOpacity,CheckBox, StyleSheet, Text, Image, View, TextInput, Button, Alert, ActivityIndicato,ToastAndroid,Header} from 'react-native';
-
+import QR_CODE from "./QR_CODE";
 
 
 
@@ -53,14 +53,16 @@ class Create_review extends Component {
         }
       if(flag == true){
         if(this.state.checked === false){
-          this. props. navigation. navigate("QR_CODE")
+          this. props.navigation. navigate("QR_CODE");
           //Alert.alert("rberif");
         }
         else
         {
-          this.props.navigation.navigate("REVIEW REQUESTS",{name:this.state.Name,mail:this.state.Mail,phone:this.state.Phone});
+          //this.props.navigation.navigate("REVIEW REQUESTS",{name:this.state.Name,mail:this.state.Mail,phone:this.state.Phone});
+          this. props.navigation. navigate("homePage");
         }
       }
+      
     }
     
     render(){
