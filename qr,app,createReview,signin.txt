@@ -519,7 +519,7 @@ export default createReview;
 
 
 
-##app.js
+                                        ##########################################################################################app.js
 
 
 
@@ -814,8 +814,7 @@ export default QR_CODE;
 
 
 
-
-##sign in
+#######################################################################################sign in
 
 
 
@@ -1068,7 +1067,7 @@ export default Signin;
 
 
 
-                                                                         ////Business Profile 1:
+                             /////////////////////////////////////////////////////////////////////////// ////Business Profile 1:
 
 
 
@@ -1595,7 +1594,7 @@ export default business
 
 
 
-                                                                                               //////change password 
+                                                        /////////////////////////////////////////////////////////////////////////change password 
                                                           
                                                           
                                                           
@@ -2130,14 +2129,18 @@ const styles = StyleSheet.create({
 });
 
 export default changePassword;
-                                                                          ///////////////business profile 2
+                                                                         
+                                                                         
+                                                                         
+                                                                         
+               //////////////////////////////////////////////////////////////////////////////////////////////////////business profile 2
                                                                           
                                                                           
                                                                           
                                                                           
                                                                           
-                                                                          
-                                                                          import { StatusBar } from "expo-status-bar";
+                                                                         
+import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
