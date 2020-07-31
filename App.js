@@ -16,7 +16,7 @@ import {
     ActivityIndicator,
   } from "react-native";
 import Signin from "./components/signin";
-import createReview from "./components/createReview";
+import createReview from "./components/Home_create";
 import changePassword from "./components/change_password"
 import QR_CODE from "./components/QR_CODE";
 import request_status from "./components/Requests_status"

@@ -123,22 +123,7 @@ class Ani extends Component {
   }
   
   componentDidMount(){
-    /*if(this.props.route.params){
-         //Alert.alert("fe");
-        this.name = "teri";
-        this.mail = "teri@gmail.com";
-        this.phone = "7010846219";
-        }   
-    else{
-    this.name = this.props.route.params.name || "undefined";
-    this.mail = this.props.route.params.mail || "undefined";
-    this.phone = this.props.route.params.phone || "undefined";
     
-    }    
-    //Alert.alert(this.props.route.params);  
-    
-      //var text = this.props.navigation.getParams('name','teri');
-    //text();  */
     this.name = "teri";
     this.mail = "teri@gmail.com";
     this.phone = "7010846219";
